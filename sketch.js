@@ -90,7 +90,9 @@ function draw() {
       r = pixels[loc];
       // Calculate an amount to change brightness based on proximity to the mouse
       let maxdist = 50; //this controls the size of the circle
-      let d = dist(x, y, nose.x, nose.y);
+      //flips (or re-flips) the x number so the circle follows your face from left to right (default is mirrored movement)
+      let fixed_nose_x = map(nose.x, 0, width, width, 0);
+      let d = dist(x, y, fixed_nose_x, nose.y);
       let adjustbrightness = (255 * (maxdist - d)) / maxdist;//the first number controls how bright/washed out the center is
       r += adjustbrightness;
       // Constrain RGB to make sure they are within 0-255 color range
